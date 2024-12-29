@@ -1,9 +1,13 @@
 const dotenv = require('dotenv');
-dotenv.config();
 const express = require('express');
+const connectToDb = require('./Db/db');
+dotenv.config();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const userRoutes = require('./Routes/UserRoutes');
 const cors = require('cors');
 const app = express();
-const connectToDb = require('./Db/db');
+app.use('/users', userRoutes);
 connectToDb();
 app.use(cors());
 app.get('/', (req, res) => {
