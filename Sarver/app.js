@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const express = require('express');
 const connectToDb = require('./Db/db');
 const cookieParser = require('cookie-parser');
+const captainRoutes = require('./CaptoneRoutes/');
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,6 +11,7 @@ app.use(cookieParser());
 const cors = require('cors');
 const app = express();
 app.use('/users', userRoutes);
+app.use('/captains', captainRoutes);
 connectToDb();
 app.use(cors());
 app.get('/', (req, res) => {
